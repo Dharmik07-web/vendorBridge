@@ -4,8 +4,8 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 
-const { notFound, errorHandler } = require("./Backend/middleware/error.middleware");
-const { apiLimiter } = require("./Backend/middleware/rateLimiter.middleware");
+const { notFound, errorHandler } = require("./middleware/error.middleware");
+const { apiLimiter } = require("./middleware/rateLimiter.middleware");
 
 const app = express();
 
@@ -41,7 +41,7 @@ app.use("/uploads", express.static("uploads"));
 app.use("/api", apiLimiter);
 
 // ─── Routes ───────────────────────────────────────────────────────────────────
-app.use("/api/v1", require("./Backend/routes/index"));
+app.use("/api/v1", require("./routes/index"));
 
 // ─── Error Handling ───────────────────────────────────────────────────────────
 app.use(notFound);
