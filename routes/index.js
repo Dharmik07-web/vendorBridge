@@ -23,6 +23,26 @@ router.use('/invoices', invoiceRoutes);
 router.use('/notifications', notificationRoutes);
 router.use('/dashboard', dashboardRoutes);
 
+// ─── Base Route ───────────────────────────────────────────────────────────
+router.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'VendorBridge API v1',
+    routes: [
+      '/auth',
+      '/vendors',
+      '/rfqs',
+      '/quotations',
+      '/approvals',
+      '/purchase-orders',
+      '/invoices',
+      '/notifications',
+      '/dashboard',
+      '/health'
+    ]
+  });
+});
+
 // ─── Health Check ─────────────────────────────────────────────────────────
 router.get('/health', (req, res) => {
   res.status(200).json({
