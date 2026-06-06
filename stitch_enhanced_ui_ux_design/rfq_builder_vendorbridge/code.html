@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VendorBridge | Create RFQ - Step 2</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Geist:wght@400;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#005321",
+                        "surface-tint": "#006e2f",
+                        "inverse-primary": "#4ae176",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#6bff8f",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-tertiary-container": "#3d4042",
+                        "primary": "#006e2f",
+                        "primary-container": "#22c55e",
+                        "surface-container-highest": "#dae2fd",
+                        "primary-fixed-dim": "#4ae176",
+                        "surface": "#faf8ff",
+                        "on-secondary-container": "#54647a",
+                        "tertiary-container": "#a9acae",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#d2d9f4",
+                        "secondary": "#505f76",
+                        "surface-container-high": "#e2e7ff",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#eef0ff",
+                        "on-primary-container": "#004b1e",
+                        "inverse-surface": "#283044",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#131b2e",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#131b2e",
+                        "on-surface-variant": "#3d4a3d",
+                        "outline-variant": "#bccbb9",
+                        "secondary-container": "#d0e1fb",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#e0e3e5",
+                        "surface-container": "#eaedff",
+                        "surface-container-low": "#f2f3ff",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "surface-bright": "#faf8ff",
+                        "on-primary-fixed": "#002109",
+                        "outline": "#6d7b6c",
+                        "tertiary": "#5c5f61",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-tertiary-fixed": "#191c1e",
+                        "background": "#faf8ff",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "on-secondary-fixed": "#0b1c30"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "stack-lg": "32px",
+                        "margin-mobile": "16px",
+                        "container-max": "1440px",
+                        "stack-sm": "8px",
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "label-caps": ["Geist"],
+                        "code": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "code": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-sm selection:bg-primary-container selection:text-on-primary-container">
+<!-- Sidebar Navigation (Predicted Component: SideNavBar) -->
+<aside class="h-screen w-64 fixed left-0 top-0 flex flex-col p-stack-md bg-surface border-r border-outline-variant shadow-sm z-50">
+<div class="flex items-center gap-3 mb-stack-lg px-3">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-on-primary font-bold">V</div>
+<div>
+<h1 class="font-title-md text-title-md font-bold text-on-surface">VendorBridge</h1>
+<p class="text-[10px] uppercase tracking-wider text-outline font-label-caps">Enterprise Procurement</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-secondary-container text-on-secondary-container rounded-lg border-l-4 border-primary" href="#">
+<span class="material-symbols-outlined" data-icon="request_quote">request_quote</span>
+<span>RFQs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="storefront">storefront</span>
+<span>Vendors</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span>Quotations</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="fact_check">fact_check</span>
+<span>Approvals</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span>Purchase Orders</span>
+</a>
+</nav>
+<div class="mt-auto pt-stack-md border-t border-outline-variant">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+<div class="mt-4 flex items-center gap-3 px-3 py-2">
+<img alt="User Profile" class="w-8 h-8 rounded-full bg-surface-container-high" data-alt="A professional headshot of a middle-aged procurement manager in a corporate setting. The lighting is bright and clean, typical of a high-end corporate office. The background is softly blurred showing a modern workspace with green plants and glass partitions, maintaining a professional and reliable atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDd3AtIoCusPPQGhdgXk1FLHbcRDaNki23PPypw5dyQvMJwfP7iosoaXI-NmykXGRtujG4X7UclV1uxS1uqkC5bWl_qvjRSJQbB3XylDxfGz5z6zuPWczDVSE_g5OqGCzsNPAuJdCl848612ucBvYxvDM2Im-17YXVL-U6nsjsQgXxio7YNahvjpBcAEwkJRkQQh2tfOhONEarGTmr43Lo8UPyONXW9bvqmpnrY9UZy0WtJpw1-kVg93F_b80wlR92FtRv31iqGoe2x"/>
+<div class="overflow-hidden">
+<p class="font-bold text-on-surface truncate">Alex Rivera</p>
+<p class="text-[10px] text-outline truncate">Operations Lead</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 min-h-screen">
+<!-- Header / Top Bar (Predicted Component: TopNavBar variant) -->
+<header class="flex justify-between items-center h-16 px-margin-desktop sticky top-0 z-40 bg-surface/80 backdrop-blur-xl border-b border-outline-variant">
+<div class="flex items-center gap-4">
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="arrow_back">arrow_back</span>
+</button>
+<h2 class="font-title-md text-title-md text-on-surface">New Request for Quotation</h2>
+</div>
+<div class="flex items-center gap-stack-md">
+<div class="flex items-center gap-2 text-outline">
+<span class="material-symbols-outlined text-[18px]" data-icon="cloud_done">cloud_done</span>
+<span class="text-xs font-label-caps">Draft Saved</span>
+</div>
+<button class="px-4 py-2 rounded-lg border border-outline-variant text-on-surface hover:bg-surface-container transition-colors font-body-sm">
+                    Cancel
+                </button>
+</div>
+</header>
+<!-- RFQ Wizard Container -->
+<div class="max-w-container-max mx-auto p-margin-desktop">
+<!-- Progress Indicator -->
+<div class="mb-stack-lg bg-surface p-6 rounded-xl border border-outline-variant shadow-sm">
+<div class="flex justify-between items-center relative">
+<!-- Progress Line -->
+<div class="absolute top-1/2 left-0 w-full h-1 bg-surface-container -translate-y-1/2 z-0"></div>
+<div class="absolute top-1/2 left-0 w-1/3 h-1 bg-primary-container -translate-y-1/2 z-0 transition-all duration-500" id="progress-bar"></div>
+<!-- Step 1 -->
+<div class="relative z-10 flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold ring-4 ring-surface">
+<span class="material-symbols-outlined" data-icon="check">check</span>
+</div>
+<span class="text-xs font-label-caps text-primary font-bold">1. Basic Info</span>
+</div>
+<!-- Step 2 -->
+<div class="relative z-10 flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold ring-4 ring-surface">
+                            2
+                        </div>
+<span class="text-xs font-label-caps text-on-surface font-bold">2. Item Details</span>
+</div>
+<!-- Step 3 -->
+<div class="relative z-10 flex flex-col items-center gap-2 opacity-40">
+<div class="w-10 h-10 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center font-bold ring-4 ring-surface">
+                            3
+                        </div>
+<span class="text-xs font-label-caps">3. Vendor Selection</span>
+</div>
+<!-- Step 4 -->
+<div class="relative z-10 flex flex-col items-center gap-2 opacity-40">
+<div class="w-10 h-10 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center font-bold ring-4 ring-surface">
+                            4
+                        </div>
+<span class="text-xs font-label-caps">4. Review &amp; Submit</span>
+</div>
+</div>
+</div>
+<!-- Content Grid -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Left Column: Main Editor -->
+<div class="col-span-12 lg:col-span-8 space-y-gutter">
+<!-- Section Header -->
+<div class="flex justify-between items-end">
+<div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-1">Define Line Items</h3>
+<p class="text-on-surface-variant text-body-sm">Specify the hardware and services required for this procurement cycle.</p>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary-container text-on-primary-container font-bold rounded-lg hover:brightness-95 transition-all shadow-sm active:scale-95">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+<span>Add New Item</span>
+</button>
+</div>
+<!-- Smart Data Table -->
+<div class="bg-surface rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="p-4 font-label-caps text-[11px] text-outline">Item Name</th>
+<th class="p-4 font-label-caps text-[11px] text-outline w-24">Qty</th>
+<th class="p-4 font-label-caps text-[11px] text-outline w-32">Unit</th>
+<th class="p-4 font-label-caps text-[11px] text-outline">Specs / Notes</th>
+<th class="p-4 w-12"></th>
+</tr>
+</thead>
+<tbody id="item-table-body">
+<tr class="border-b border-outline-variant/50 hover:bg-surface-container-lowest transition-colors group">
+<td class="p-4">
+<input class="w-full bg-transparent border-none focus:ring-0 p-0 text-body-sm font-semibold placeholder:text-outline/50" placeholder="Enter item name..." type="text" value="Pro-Series Workstation Laptops"/>
+</td>
+<td class="p-4">
+<input class="w-full bg-transparent border-none focus:ring-0 p-0 text-body-sm text-on-surface-variant" type="number" value="50"/>
+</td>
+<td class="p-4">
+<select class="w-full bg-transparent border-none focus:ring-0 p-0 text-body-sm text-on-surface-variant appearance-none cursor-pointer">
+<option selected="">Units</option>
+<option>Sets</option>
+<option>Hours</option>
+</select>
+</td>
+<td class="p-4">
+<input class="w-full bg-transparent border-none focus:ring-0 p-0 text-body-sm text-outline italic" placeholder="Add technical specifications..." type="text" value="32GB RAM, 1TB SSD, RTX 4070 equivalent or higher"/>
+</td>
+<td class="p-4 text-right">
+<button class="text-outline hover:text-error transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span>
+</button>
+</td>
+</tr>
+<tr class="border-b border-outline-variant/50 hover:bg-surface-container-lowest transition-colors group">
+<td class="p-4">
+<input class="w-full bg-transparent border-none focus:ring-0 p-0 text-body-sm font-semibold placeholder:text-outline/50" placeholder="Enter item name..." type="text" value="Ergonomic Task Chairs (Model X)"/>
+</td>
+<td class="p-4">
+<input class="w-full bg-transparent border-none focus:ring-0 p-0 text-body-sm text-on-surface-variant" type="number" value="120"/>
+</td>
+<td class="p-4">
+<select class="w-full bg-transparent border-none focus:ring-0 p-0 text-body-sm text-on-surface-variant appearance-none cursor-pointer">
+<option selected="">Units</option>
+<option>Sets</option>
+</select>
+</td>
+<td class="p-4">
+<input class="w-full bg-transparent border-none focus:ring-0 p-0 text-body-sm text-outline italic" placeholder="Add technical specifications..." type="text" value="Mesh back, lumbar support, Adjustable armrests"/>
+</td>
+<td class="p-4 text-right">
+<button class="text-outline hover:text-error transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="p-4 bg-surface-container-lowest flex justify-center">
+<button class="text-primary font-label-caps text-[11px] hover:underline flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="add_circle">add_circle</span>
+                                Add Row
+                            </button>
+</div>
+</div>
+<!-- Drag and Drop Attachments -->
+<div class="space-y-stack-sm">
+<label class="font-label-caps text-[11px] text-outline uppercase ml-1">Technical Attachments</label>
+<div class="border-2 border-dashed border-outline-variant rounded-xl p-8 bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer flex flex-col items-center justify-center text-center group">
+<div class="w-12 h-12 rounded-full bg-surface border border-outline-variant flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-[28px]" data-icon="upload_file">upload_file</span>
+</div>
+<p class="text-body-sm font-semibold text-on-surface">Click to upload or drag and drop</p>
+<p class="text-xs text-outline mt-1">PDF, XLSX, or CAD files (Max 25MB)</p>
+</div>
+</div>
+<!-- Bottom Nav Actions -->
+<div class="flex justify-between items-center pt-stack-lg">
+<button class="flex items-center gap-2 px-6 py-3 rounded-lg border border-outline text-on-surface hover:bg-surface-container-high transition-colors font-bold">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+                            Previous Step
+                        </button>
+<button class="flex items-center gap-2 px-8 py-3 rounded-lg bg-primary text-on-primary font-bold hover:brightness-110 transition-all shadow-md active:scale-95">
+                            Continue to Vendor Selection
+                            <span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Right Column: Sidebar Panels -->
+<div class="col-span-12 lg:col-span-4 space-y-gutter">
+<!-- AI Supplier Suggestions Card -->
+<div class="glass-panel rounded-xl p-6 shadow-sm overflow-hidden relative">
+<div class="absolute top-0 right-0 p-2">
+<span class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded-full font-label-caps">AI POWERED</span>
+</div>
+<h4 class="font-title-md text-title-md text-on-surface mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="auto_awesome">auto_awesome</span>
+                            Smart Matches
+                        </h4>
+<p class="text-xs text-on-surface-variant mb-6">Based on your items, we found 3 vendors who can fulfill this request with high reliability.</p>
+<div class="space-y-4">
+<!-- Supplier 1 -->
+<div class="flex items-start gap-3 p-3 rounded-lg hover:bg-white/50 transition-colors border border-transparent hover:border-outline-variant">
+<img alt="TechLogix" class="w-10 h-10 rounded-lg object-cover" data-alt="A minimalist logo for TechLogix, a modern hardware distribution company. The logo is clean and professional, featuring a stylized geometric icon in shades of dark green and charcoal. It represents reliability and high-tech efficiency in a B2B SaaS context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7f0AMG2ewbI0o-Xd4KWym_yO1mg90WFE2qCa7SC03-VuSfD987XmN8_bDB9gTrvfnRiUYNf5WMYW1Mmso8AkgJfcETX4pK6Lcgv7nETkHaqRu2uTQz8tzkSjaEOuf_vHTIQRDRH4vuaguYyIa5VYy-gEW5GdwaNNfzlBVXxrKystD1s9omHm2IPkauuDzbUIrPoiijnreyBLbK-EmwHicFyLPIQAsfS343fWzS-rlylhnVB3n3eldmqPOyQss-Gk-r_QTObxT93Br"/>
+<div class="flex-1">
+<div class="flex justify-between">
+<p class="font-bold text-sm">TechLogix Corp</p>
+<span class="text-[10px] font-bold text-primary">98% Match</span>
+</div>
+<p class="text-[11px] text-outline">Tier 1 Partner • Electronics</p>
+</div>
+</div>
+<!-- Supplier 2 -->
+<div class="flex items-start gap-3 p-3 rounded-lg hover:bg-white/50 transition-colors border border-transparent hover:border-outline-variant">
+<img alt="OmniOffice" class="w-10 h-10 rounded-lg object-cover" data-alt="A clean, corporate brand identity for OmniOffice furniture solutions. The image shows a modern business icon with sophisticated typography. The color scheme is professional navy blue and white, set against a bright, airy background that suggests an efficient office supply network." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAP6Dv4wC81zeDQ5JmgykEUvyy1FpQ872EsPmhKdy65B6opBWpDIV5-hLSqUk3hRQJVWYr1DSS1n3m_qYLqMXH6gFtUan5eJW8FbIQN46Kexh5pQopzqZ7yYFE91pyKOpmSwLNShE6F78BF8ginTFqQbfnTgQyRijSw7W7p_NiJgVZ0ELMCz3cxKvpCuxkBYezyRFp3zn_bAesvi_-y--vLGRD0gNAJL8GEXuIfezM-SB5Ui0yO9i4ge4UpU_Uic0VargI_OA8iRTC_"/>
+<div class="flex-1">
+<div class="flex justify-between">
+<p class="font-bold text-sm">OmniOffice Solutions</p>
+<span class="text-[10px] font-bold text-primary">92% Match</span>
+</div>
+<p class="text-[11px] text-outline">Preferred Vendor • Furnishing</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-2 text-xs font-bold text-primary border border-primary/20 rounded-lg hover:bg-primary/5 transition-colors">
+                            View All Suggestions
+                        </button>
+</div>
+<!-- Draft Summary Card -->
+<div class="bg-surface rounded-xl border border-outline-variant shadow-sm p-6">
+<h4 class="font-label-caps text-[11px] text-outline uppercase mb-4 tracking-widest">RFQ Summary</h4>
+<div class="space-y-4">
+<div class="flex justify-between py-2 border-b border-outline-variant/30">
+<span class="text-xs text-on-surface-variant">Project Name</span>
+<span class="text-xs font-bold">H2 Office Expansion</span>
+</div>
+<div class="flex justify-between py-2 border-b border-outline-variant/30">
+<span class="text-xs text-on-surface-variant">Total Items</span>
+<span class="text-xs font-bold">2 Categories (170 units)</span>
+</div>
+<div class="flex justify-between py-2 border-b border-outline-variant/30">
+<span class="text-xs text-on-surface-variant">Estimated Budget</span>
+<span class="text-xs font-bold text-primary-fixed-dim">$85,000 - $110,000</span>
+</div>
+<div class="flex justify-between py-2 border-b border-outline-variant/30">
+<span class="text-xs text-on-surface-variant">Target Deadline</span>
+<span class="text-xs font-bold">Oct 12, 2023</span>
+</div>
+</div>
+<div class="mt-6 p-3 bg-surface-container-lowest rounded-lg border border-outline-variant/50">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="info">info</span>
+<span class="text-[10px] font-bold text-on-surface">Pro-Tip</span>
+</div>
+<p class="text-[10px] text-on-surface-variant leading-relaxed">
+                                Detailed technical specs reduce response time from vendors by up to 40%. Consider attaching a PDF spec sheet.
+                            </p>
+</div>
+</div>
+<!-- Help Widget -->
+<div class="p-6 bg-secondary-container/30 rounded-xl border border-secondary-container text-center">
+<span class="material-symbols-outlined text-secondary mb-2" data-icon="support_agent">support_agent</span>
+<p class="text-xs font-bold text-on-secondary-container">Need help defining items?</p>
+<p class="text-[10px] text-secondary mt-1">Chat with our procurement experts</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Success Toast (Hidden by default) -->
+<div class="fixed bottom-10 right-10 translate-y-20 opacity-0 transition-all duration-300 pointer-events-none z-[100]" id="save-toast">
+<div class="bg-inverse-surface text-inverse-on-surface px-6 py-4 rounded-xl shadow-2xl flex items-center gap-4">
+<span class="material-symbols-outlined text-primary-fixed" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div>
+<p class="text-sm font-bold">Draft saved successfully</p>
+<p class="text-xs opacity-80">Last update: Just now</p>
+</div>
+</div>
+</div>
+<script>
+        // Micro-interactions
+        const itemRows = document.querySelectorAll('tbody tr');
+        itemRows.forEach(row => {
+            row.addEventListener('focusin', () => {
+                row.classList.add('bg-surface-container-lowest');
+            });
+            row.addEventListener('focusout', () => {
+                row.classList.remove('bg-surface-container-lowest');
+            });
+        });
+
+        // Simulating periodic save
+        setInterval(() => {
+            const toast = document.getElementById('save-toast');
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }, 30000);
+
+        // Hover animations for the AI card
+        const aiCard = document.querySelector('.glass-panel');
+        aiCard.addEventListener('mousemove', (e) => {
+            const rect = aiCard.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            aiCard.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(34, 197, 94, 0.05) 0%, rgba(255, 255, 255, 0.7) 100%)`;
+        });
+        aiCard.addEventListener('mouseleave', () => {
+            aiCard.style.background = 'rgba(255, 255, 255, 0.7)';
+        });
+    </script>
+</body></html>

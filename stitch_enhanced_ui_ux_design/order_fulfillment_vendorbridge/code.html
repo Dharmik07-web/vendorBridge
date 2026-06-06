@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Purchase Order - VendorBridge</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Geist:wght@400;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        @media print {
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
+            .sidebar-offset { margin-left: 0 !important; }
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#005321",
+                        "surface-tint": "#006e2f",
+                        "inverse-primary": "#4ae176",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#6bff8f",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-tertiary-container": "#3d4042",
+                        "primary": "#006e2f",
+                        "primary-container": "#22c55e",
+                        "surface-container-highest": "#dae2fd",
+                        "primary-fixed-dim": "#4ae176",
+                        "surface": "#faf8ff",
+                        "on-secondary-container": "#54647a",
+                        "tertiary-container": "#a9acae",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#d2d9f4",
+                        "secondary": "#505f76",
+                        "surface-container-high": "#e2e7ff",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#eef0ff",
+                        "on-primary-container": "#004b1e",
+                        "inverse-surface": "#283044",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#131b2e",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#131b2e",
+                        "on-surface-variant": "#3d4a3d",
+                        "outline-variant": "#bccbb9",
+                        "secondary-container": "#d0e1fb",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#e0e3e5",
+                        "surface-variant": "#dae2fd",
+                        "surface-container": "#eaedff",
+                        "surface-container-low": "#f2f3ff",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "surface-bright": "#faf8ff",
+                        "on-primary-fixed": "#002109",
+                        "outline": "#6d7b6c",
+                        "tertiary": "#5c5f61",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-tertiary-fixed": "#191c1e",
+                        "background": "#faf8ff",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "on-secondary-fixed": "#0b1c30"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "stack-lg": "32px",
+                        "margin-mobile": "16px",
+                        "container-max": "1440px",
+                        "stack-sm": "8px",
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "label-caps": ["Geist"],
+                        "code": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "title-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "code": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-sm overflow-x-hidden">
+<!-- Sidebar Navigation Shell -->
+<aside class="no-print hidden md:flex flex-col h-full p-stack-md bg-surface dark:bg-inverse-surface border-r border-outline-variant dark:border-outline shadow-sm h-screen w-64 fixed left-0 top-0 z-50">
+<div class="flex flex-col gap-1 mb-8">
+<h1 class="font-title-md text-title-md font-bold text-on-surface dark:text-inverse-on-surface">VendorBridge</h1>
+<p class="text-on-surface-variant font-label-caps text-label-caps opacity-70">Enterprise Procurement</p>
+</div>
+<nav class="flex-1 space-y-1 overflow-y-auto">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="storefront">storefront</span>
+<span class="font-body-sm">Vendors</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="request_quote">request_quote</span>
+<span class="font-body-sm">RFQs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-body-sm">Quotations</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="fact_check">fact_check</span>
+<span class="font-body-sm">Approvals</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-lg border-l-4 border-primary transition-transform active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="font-body-sm">Purchase Orders</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-body-sm">Invoices</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-body-sm">Reports &amp; Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-body-sm">Activity Logs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors duration-200 mt-auto" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-sm">Settings</span>
+</a>
+</nav>
+<button class="mt-6 w-full flex items-center justify-center gap-2 py-3 bg-primary text-on-primary rounded-lg font-bold transition-all hover:brightness-110 active:scale-95">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+<span>New RFQ</span>
+</button>
+</aside>
+<!-- Main Content Area -->
+<main class="sidebar-offset md:ml-64 min-h-screen bg-surface-container-low pb-12">
+<!-- Top Nav Bar -->
+<header class="no-print sticky top-0 z-40 h-16 bg-surface/80 dark:bg-inverse-surface/80 backdrop-blur-xl border-b border-outline-variant flex items-center justify-between px-margin-desktop transition-shadow focus-within:ring-2 focus-within:ring-primary">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full bg-surface-container-high border-none rounded-full py-2 pl-10 pr-4 text-body-sm focus:ring-2 focus:ring-primary" placeholder="Search orders, vendors, or invoices..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="relative text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="business">business</span>
+</button>
+<div class="flex items-center gap-2 cursor-pointer hover:bg-surface-container-high p-1 rounded-full transition-colors">
+<img class="w-8 h-8 rounded-full border border-outline-variant" data-alt="Professional headshot of a corporate procurement executive for VendorBridge, wearing a modern charcoal suit against a soft-focus office background. The lighting is bright and clean with a premium, high-stakes corporate aesthetic consistent with enterprise software interfaces." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3J8908mfolWJndJ-SQ7mz0-kAMJBa-tFHNmfk49xAbuY6GVE2hKE7ZF4qW4yLT8HSX4xfq62GhA50vnCAfcLfUwkK6YnUt93lPANQvyyghXpPxK9dNjYVNlei5ik-uo5Fpr2nH4FYQ6v98LzuN_3HmS9QX-0HX5iVP2BwM7QysdCzedgte5YL46WtHHPWmyybnMNyqk-hWA1Gj4v6vBS0ZjgWBfwDXRON_GSjCeNZCIrigMamXqqJG6Y1QFZdcEVcXJP1RRRn7K6q"/>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</header>
+<!-- Document Header Area -->
+<div class="max-w-container-max mx-auto px-margin-desktop pt-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+<div>
+<nav class="flex items-center gap-2 text-on-surface-variant font-label-caps mb-4">
+<a class="hover:text-primary transition-colors" href="#">Purchase Orders</a>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+<span class="text-on-surface">PO-2024-0892</span>
+</nav>
+<div class="flex items-center gap-4">
+<h2 class="font-headline-lg text-headline-lg">Order PO-2024-0892</h2>
+<span class="px-3 py-1 bg-primary/10 text-primary border border-primary/20 rounded-full font-label-caps flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="check_circle" data-weight="fill">check_circle</span>
+                            Approved
+                        </span>
+</div>
+<p class="text-on-surface-variant mt-1">Issued on October 24, 2024 by David Chen</p>
+</div>
+<div class="no-print flex items-center gap-3">
+<button class="flex items-center gap-2 px-5 py-2.5 bg-surface border border-outline-variant rounded-lg font-bold text-on-surface hover:bg-surface-container-high transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+                        Download PDF
+                    </button>
+<button class="flex items-center gap-2 px-5 py-2.5 bg-primary text-on-primary rounded-lg font-bold shadow-sm hover:brightness-110 transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+                        Email Vendor
+                    </button>
+</div>
+</div>
+<!-- Dashboard Layout (Bento Style) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Main PO Document Preview -->
+<div class="lg:col-span-8 space-y-gutter">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant overflow-hidden min-h-[800px] flex flex-col">
+<!-- PO Header -->
+<div class="p-10 border-b border-outline-variant flex justify-between items-start">
+<div class="space-y-4">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[24px]" data-icon="account_balance">account_balance</span>
+</div>
+<span class="font-title-md text-title-md font-extrabold tracking-tight">VendorBridge</span>
+</div>
+<div class="text-on-surface-variant leading-relaxed">
+<p class="font-bold text-on-surface">VendorBridge HQ</p>
+<p>1210 Innovation Way, Suite 400</p>
+<p>San Francisco, CA 94105</p>
+<p>finance@vendorbridge.io</p>
+</div>
+</div>
+<div class="text-right space-y-2">
+<h3 class="font-headline-lg text-[24px] uppercase tracking-widest text-on-surface-variant opacity-50">Purchase Order</h3>
+<div class="bg-surface-container-low p-4 rounded-lg inline-block text-left border border-outline-variant">
+<div class="grid grid-cols-2 gap-x-8 gap-y-1">
+<span class="font-label-caps text-on-surface-variant">PO NUMBER</span>
+<span class="font-bold text-right">PO-2024-0892</span>
+<span class="font-label-caps text-on-surface-variant">DATE</span>
+<span class="font-bold text-right">Oct 24, 2024</span>
+<span class="font-label-caps text-on-surface-variant">DUE DATE</span>
+<span class="font-bold text-right">Nov 15, 2024</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Vendor / Ship To -->
+<div class="grid grid-cols-2 p-10 gap-20">
+<div>
+<h4 class="font-label-caps text-on-surface-variant mb-3 border-b border-outline-variant pb-1">VENDOR</h4>
+<p class="font-bold text-on-surface text-lg">Lumina Tech Solutions</p>
+<p class="text-on-surface-variant">Attn: Sarah Jenkins</p>
+<p class="text-on-surface-variant">4500 Enterprise Pkwy</p>
+<p class="text-on-surface-variant">Austin, TX 78701</p>
+<p class="text-on-surface-variant">+1 (512) 555-0192</p>
+</div>
+<div>
+<h4 class="font-label-caps text-on-surface-variant mb-3 border-b border-outline-variant pb-1">SHIP TO</h4>
+<p class="font-bold text-on-surface text-lg">Central Fulfillment Center</p>
+<p class="text-on-surface-variant">Dock 14, Bld G</p>
+<p class="text-on-surface-variant">800 Logistics Way</p>
+<p class="text-on-surface-variant">Oakland, CA 94607</p>
+</div>
+</div>
+<!-- Items Table -->
+<div class="px-10 flex-1">
+<table class="w-full text-left">
+<thead>
+<tr class="font-label-caps text-on-surface-variant border-b border-outline-variant">
+<th class="py-4 font-semibold">DESCRIPTION</th>
+<th class="py-4 font-semibold text-right">QTY</th>
+<th class="py-4 font-semibold text-right">UNIT PRICE</th>
+<th class="py-4 font-semibold text-right">TOTAL</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="group hover:bg-surface-container-low transition-colors">
+<td class="py-6">
+<p class="font-bold text-on-surface">Lumina X-200 Server Blades</p>
+<p class="text-on-surface-variant text-sm">Enterprise series, 128GB RAM, 2TB SSD Configuration</p>
+</td>
+<td class="py-6 text-right font-code text-on-surface">12</td>
+<td class="py-6 text-right font-code text-on-surface">$4,250.00</td>
+<td class="py-6 text-right font-code text-on-surface font-bold">$51,000.00</td>
+</tr>
+<tr class="group hover:bg-surface-container-low transition-colors">
+<td class="py-6">
+<p class="font-bold text-on-surface">Rack Mount Installation Kit</p>
+<p class="text-on-surface-variant text-sm">Universal slider rails and cable management arms</p>
+</td>
+<td class="py-6 text-right font-code text-on-surface">12</td>
+<td class="py-6 text-right font-code text-on-surface">$145.00</td>
+<td class="py-6 text-right font-code text-on-surface font-bold">$1,740.00</td>
+</tr>
+<tr class="group hover:bg-surface-container-low transition-colors">
+<td class="py-6">
+<p class="font-bold text-on-surface">On-site Deployment Service</p>
+<p class="text-on-surface-variant text-sm">Hardware assembly and baseline OS installation</p>
+</td>
+<td class="py-6 text-right font-code text-on-surface">1</td>
+<td class="py-6 text-right font-code text-on-surface">$2,500.00</td>
+<td class="py-6 text-right font-code text-on-surface font-bold">$2,500.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Totals Section -->
+<div class="p-10 bg-surface-container-low/50 border-t border-outline-variant flex justify-between">
+<div class="max-w-xs">
+<h4 class="font-label-caps text-on-surface-variant mb-2">NOTES &amp; TERMS</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">NET 30 Payment Terms. All deliveries must be made between 08:00 and 16:00 PST. Reference PO number on all shipping labels and invoices.</p>
+</div>
+<div class="w-64 space-y-3">
+<div class="flex justify-between text-on-surface-variant">
+<span>Subtotal</span>
+<span class="font-code">$55,240.00</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span>Tax (8.25%)</span>
+<span class="font-code">$4,557.30</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span>Shipping</span>
+<span class="font-code text-primary">Free</span>
+</div>
+<div class="pt-3 border-t border-outline-variant flex justify-between items-center">
+<span class="font-bold text-lg">Total Amount</span>
+<span class="font-code text-xl font-bold text-on-surface">$59,797.30</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sidebar Details Column -->
+<div class="lg:col-span-4 space-y-gutter">
+<!-- Vendor Details Card -->
+<section class="bg-surface-container-lowest rounded-xl p-6 shadow-sm border border-outline-variant group hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-title-md text-title-md">Vendor Profile</h3>
+<button class="text-primary text-sm font-bold hover:underline">View CRM</button>
+</div>
+<div class="flex items-center gap-4 mb-6">
+<div class="w-14 h-14 bg-secondary-container rounded-xl flex items-center justify-center text-on-secondary-container font-bold text-xl">L</div>
+<div>
+<p class="font-bold text-lg">Lumina Tech Solutions</p>
+<p class="text-on-surface-variant text-sm">Strategic Tier-1 Vendor</p>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between text-sm">
+<span class="text-on-surface-variant">Reliability Score</span>
+<div class="flex gap-0.5 text-primary">
+<span class="material-symbols-outlined text-[16px]" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="star">star</span>
+</div>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-on-surface-variant">Last Order</span>
+<span class="text-on-surface">14 days ago</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-on-surface-variant">YTD Spend</span>
+<span class="text-on-surface font-code">$1.2M</span>
+</div>
+</div>
+</section>
+<!-- Delivery Status Timeline -->
+<section class="bg-surface-container-lowest rounded-xl p-6 shadow-sm border border-outline-variant">
+<h3 class="font-title-md text-title-md mb-6">Delivery Lifecycle</h3>
+<div class="space-y-6 relative">
+<!-- Timeline line -->
+<div class="absolute left-[11px] top-2 bottom-2 w-0.5 bg-outline-variant"></div>
+<!-- Steps -->
+<div class="relative flex items-start gap-4">
+<div class="z-10 w-6 h-6 rounded-full bg-primary flex items-center justify-center ring-4 ring-surface">
+<span class="material-symbols-outlined text-white text-[14px]" data-icon="check">check</span>
+</div>
+<div class="flex-1">
+<p class="font-bold text-on-surface">PO Created &amp; Sent</p>
+<p class="text-xs text-on-surface-variant">Oct 24, 10:45 AM</p>
+</div>
+</div>
+<div class="relative flex items-start gap-4">
+<div class="z-10 w-6 h-6 rounded-full bg-primary flex items-center justify-center ring-4 ring-surface">
+<span class="material-symbols-outlined text-white text-[14px]" data-icon="check">check</span>
+</div>
+<div class="flex-1">
+<p class="font-bold text-on-surface">Vendor Acknowledged</p>
+<p class="text-xs text-on-surface-variant">Oct 24, 1:20 PM</p>
+</div>
+</div>
+<div class="relative flex items-start gap-4">
+<div class="z-10 w-6 h-6 rounded-full bg-surface-container-high border-2 border-primary flex items-center justify-center ring-4 ring-surface">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+</div>
+<div class="flex-1">
+<p class="font-bold text-primary">In Fulfillment</p>
+<p class="text-xs text-on-surface-variant">Estimated Ship: Oct 28</p>
+</div>
+</div>
+<div class="relative flex items-start gap-4 opacity-40">
+<div class="z-10 w-6 h-6 rounded-full bg-surface-container-high border-2 border-outline-variant flex items-center justify-center ring-4 ring-surface"></div>
+<div class="flex-1">
+<p class="font-bold text-on-surface">Shipping Transit</p>
+<p class="text-xs text-on-surface-variant">Pending tracking info</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Payment Tracking Widget -->
+<section class="bg-primary-container/10 border border-primary/20 rounded-xl p-6 shadow-sm overflow-hidden relative">
+<div class="absolute -right-8 -bottom-8 opacity-10">
+<span class="material-symbols-outlined text-[120px]" data-icon="payments">payments</span>
+</div>
+<h3 class="font-title-md text-title-md mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="account_balance_wallet">account_balance_wallet</span>
+                            Payment Track
+                        </h3>
+<p class="text-on-surface-variant text-sm mb-6 leading-tight">Current budget allocation and release schedule for this PO.</p>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between mb-1 text-xs font-bold text-on-surface-variant">
+<span>BUDGET ALLOCATED</span>
+<span>100%</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-full"></div>
+</div>
+</div>
+<div class="bg-white/50 p-3 rounded-lg border border-primary/10">
+<p class="text-xs text-on-surface-variant mb-1">NEXT ACTION</p>
+<p class="font-bold text-on-surface">Invoice Approval Required</p>
+<p class="text-xs text-on-surface-variant mt-1">Due within 3 days of delivery confirmation.</p>
+</div>
+</div>
+</section>
+<!-- Vendor Location Map (Visual Only) -->
+<div class="rounded-xl overflow-hidden border border-outline-variant h-48 relative">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist vector-style map of Austin, Texas downtown area, shown from an isometric perspective. The map uses a neutral color palette of grays and whites, with a single bright green pin highlighting the location of a tech corporate office. Professional, architectural aesthetic for a business application." data-location="Austin, Texas" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDag7TUpSHgJhOQb7c-SIb-13fnWgacbsVyi5-qv4fYM8dVUI4ISCcPYufuwG1uafkrtN4PX8MmTeFB599mOXOvpA48vUCrrICIY9RTfoKRvUgqlsHQGLzb3KKBmgywafbT3Z7GFI7vKfovosG8vG7Nb0IeHVaxiFeE2SLN5hZJSSoXXs5poWl7GjM9eLWxXUWMrLPAhgg9_lvTdt7AxdYHpJUzjZ7yJ-qWz8ARHSfC76CihS7FuINNKwKqjORZZoPWQFUsz7Fhmno8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-4">
+<p class="text-white text-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="location_on">location_on</span>
+                                Austin HQ Facility
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Success Notification Toast (Interactive Micro-interaction) -->
+<div class="fixed bottom-8 right-8 bg-inverse-surface text-inverse-on-surface px-6 py-4 rounded-xl shadow-2xl flex items-center gap-4 translate-y-32 opacity-0 transition-all duration-500 z-[100]" id="email-toast">
+<span class="material-symbols-outlined text-primary-fixed" data-icon="check_circle">check_circle</span>
+<div>
+<p class="font-bold text-sm">Purchase Order Sent</p>
+<p class="text-xs opacity-70">Lumina Tech Solutions notified successfully.</p>
+</div>
+<button class="ml-4 opacity-50 hover:opacity-100" onclick="toggleToast(false)">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<script>
+        function toggleToast(show) {
+            const toast = document.getElementById('email-toast');
+            if (show) {
+                toast.classList.remove('translate-y-32', 'opacity-0');
+            } else {
+                toast.classList.add('translate-y-32', 'opacity-0');
+            }
+        }
+
+        // Attach to email button
+        document.querySelector('button:has(.material-symbols-outlined[data-icon="mail"])').addEventListener('click', () => {
+            toggleToast(true);
+            setTimeout(() => toggleToast(false), 5000);
+        });
+
+        // Dashboard/Nav state logic handled by JSON instruction (Shopping Cart is active)
+    </script>
+</body></html>

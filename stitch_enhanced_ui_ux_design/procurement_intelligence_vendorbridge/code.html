@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VendorBridge | Executive Reports &amp; Analytics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Geist:wght@400;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#005321",
+                    "surface-tint": "#006e2f",
+                    "inverse-primary": "#4ae176",
+                    "on-error-container": "#93000a",
+                    "primary-fixed": "#6bff8f",
+                    "secondary-fixed": "#d3e4fe",
+                    "on-tertiary-container": "#3d4042",
+                    "primary": "#006e2f",
+                    "primary-container": "#22c55e",
+                    "surface-container-highest": "#dae2fd",
+                    "primary-fixed-dim": "#4ae176",
+                    "surface": "#faf8ff",
+                    "on-secondary-container": "#54647a",
+                    "tertiary-container": "#a9acae",
+                    "on-error": "#ffffff",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#d2d9f4",
+                    "secondary": "#505f76",
+                    "surface-container-high": "#e2e7ff",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#eef0ff",
+                    "on-primary-container": "#004b1e",
+                    "inverse-surface": "#283044",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#131b2e",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#131b2e",
+                    "on-surface-variant": "#3d4a3d",
+                    "outline-variant": "#bccbb9",
+                    "secondary-container": "#d0e1fb",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#e0e3e5",
+                    "surface-container": "#eaedff",
+                    "surface-container-low": "#f2f3ff",
+                    "on-secondary-fixed-variant": "#38485d",
+                    "on-tertiary-fixed-variant": "#444749",
+                    "surface-bright": "#faf8ff",
+                    "on-primary-fixed": "#002109",
+                    "outline": "#6d7b6c",
+                    "tertiary": "#5c5f61",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#b7c8e1",
+                    "on-tertiary-fixed": "#191c1e",
+                    "background": "#faf8ff",
+                    "tertiary-fixed-dim": "#c4c7c9",
+                    "on-secondary-fixed": "#0b1c30"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "40px",
+                    "stack-lg": "32px",
+                    "margin-mobile": "16px",
+                    "container-max": "1440px",
+                    "stack-sm": "8px",
+                    "unit": "4px",
+                    "gutter": "24px",
+                    "stack-md": "16px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Inter"],
+                    "label-caps": ["Geist"],
+                    "code": ["Geist"],
+                    "body-lg": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "title-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "code": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .chart-gradient-primary {
+            background: linear-gradient(180deg, rgba(34, 197, 94, 0.2) 0%, rgba(34, 197, 94, 0) 100%);
+        }
+        .gauge-bar {
+            stroke-dasharray: 251.2;
+            stroke-dashoffset: 75; /* 70% value */
+            transition: stroke-dashoffset 1s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-sm selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface border-r border-outline-variant shadow-sm flex flex-col p-stack-md z-50">
+<div class="mb-stack-lg">
+<h1 class="font-title-md text-title-md font-bold text-on-surface">VendorBridge</h1>
+<p class="text-[11px] font-label-caps uppercase tracking-wider text-outline">Enterprise Procurement</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">storefront</span>
+<span>Vendors</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">request_quote</span>
+<span>RFQs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">description</span>
+<span>Quotations</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">fact_check</span>
+<span>Approvals</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span>Purchase Orders</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span>Invoices</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-secondary-container text-on-secondary-container rounded-lg border-l-4 border-primary shadow-sm" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-bold">Reports &amp; Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">history</span>
+<span>Activity Logs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<button class="mt-auto bg-primary text-on-primary font-bold py-3 rounded-xl flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all shadow-md">
+<span class="material-symbols-outlined">add</span>
+            New RFQ
+        </button>
+</aside>
+<!-- TopNavBar -->
+<header class="flex justify-between items-center h-16 px-margin-desktop ml-64 bg-surface/80 backdrop-blur-xl border-b border-outline-variant sticky top-0 z-40">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md focus-within:ring-2 focus-within:ring-primary rounded-lg transition-all">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-lg py-2 pl-10 pr-4 text-body-sm focus:ring-0" placeholder="Search reports, vendors, or insights..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-stack-md ml-stack-lg">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">business</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant cursor-pointer">
+<img alt="User Profile" data-alt="A professional headshot of a corporate executive in a modern, brightly lit office environment. The image uses a clean, high-key lighting style with a soft-focus background that hints at glass architecture and greenery. The person is dressed in smart business attire, looking confident and approachable, reflecting the premium B2B SaaS aesthetic of the VendorBridge platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOTN5TqVmcQCSEsL8_y2N-LIoiE5LztjsMHQIjyTpyBsi4rCelExB6RAl4psc8iU0b-tCAXxhOkrSMpvIfF5LyE2KpkhePeV1-HrULCPqMK0pnYpatZSC4pDCD_9ON9kmjEHnsW9zzE5HBtiPmftxFb8egs5SdXRk8N5J6Re6NWudR0fDIDzi9dzoymmvE-q0GryOuva0SJPE7FfISWTFGBffylqPY5JF-QvSOdC_-Cy3tH18LbrVxdNhTpmfGN0KxmH-hNXv_Swfy"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-64 p-margin-desktop bg-surface-container-low min-h-screen">
+<!-- Header Section -->
+<div class="flex justify-between items-end mb-stack-lg">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Executive Analytics</h2>
+<p class="text-on-surface-variant">Real-time procurement performance and forecasting for Q3 2024.</p>
+</div>
+<div class="flex gap-stack-sm">
+<button class="px-4 py-2 bg-surface border border-outline-variant rounded-lg font-bold text-body-sm flex items-center gap-2 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">calendar_today</span>
+                    Last 30 Days
+                </button>
+<button class="px-4 py-2 bg-primary text-on-primary rounded-lg font-bold text-body-sm flex items-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">download</span>
+                    Export PDF
+                </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- AI Insights Panel -->
+<div class="col-span-12 lg:col-span-4 glass-card p-stack-md rounded-xl shadow-sm border-l-4 border-primary">
+<div class="flex items-center gap-2 mb-stack-sm">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<h3 class="font-label-caps uppercase text-primary">AI Performance Insights</h3>
+</div>
+<div class="space-y-4">
+<div class="bg-primary/5 p-3 rounded-lg border border-primary/10">
+<p class="text-body-sm font-semibold text-primary mb-1">Efficiency Alert</p>
+<p class="text-on-surface-variant leading-relaxed">Procurement lead times for "IT Hardware" have decreased by 14% this month. Recommend consolidating Q4 orders with Global Systems Inc.</p>
+</div>
+<div class="bg-surface-container p-3 rounded-lg">
+<p class="text-body-sm font-semibold text-on-surface mb-1">Savings Opportunity</p>
+<p class="text-on-surface-variant leading-relaxed">Dynamic discounting on 12 active invoices could save $14,200 if approved within 48 hours.</p>
+</div>
+<button class="w-full py-2 text-primary font-bold hover:bg-primary/5 rounded-lg transition-colors text-body-sm">
+                        Ask Bridge AI a question...
+                    </button>
+</div>
+</div>
+<!-- Procurement Savings Gauge -->
+<div class="col-span-12 md:col-span-6 lg:col-span-4 glass-card p-stack-md rounded-xl shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-label-caps uppercase text-outline">Procurement Savings</h3>
+<span class="material-symbols-outlined text-outline">info</span>
+</div>
+<div class="relative flex flex-col items-center justify-center">
+<svg class="w-40 h-40 transform -rotate-90">
+<circle cx="80" cy="80" fill="transparent" r="70" stroke="#E2E8F0" stroke-width="12"></circle>
+<circle class="gauge-bar" cx="80" cy="80" fill="transparent" r="70" stroke="#22C55E" stroke-linecap="round" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-display-lg text-headline-lg text-primary">$842k</span>
+<span class="text-[12px] font-label-caps text-outline">Target: $1.2M</span>
+</div>
+</div>
+<div class="mt-4 flex justify-between text-body-sm">
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[18px]">trending_up</span>
+<span>+12.4% vs LY</span>
+</div>
+<span class="text-on-surface-variant">70.1% Goal Achieved</span>
+</div>
+</div>
+<!-- Spend by Category Donut -->
+<div class="col-span-12 md:col-span-6 lg:col-span-4 glass-card p-stack-md rounded-xl shadow-sm">
+<h3 class="font-label-caps uppercase text-outline mb-6">Spend by Category</h3>
+<div class="flex items-center gap-6">
+<div class="relative w-32 h-32">
+<!-- Custom CSS Donut representation -->
+<div class="w-full h-full rounded-full border-[16px] border-primary" style="clip-path: polygon(50% 50%, 50% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 50%);"></div>
+<div class="absolute inset-0 w-full h-full rounded-full border-[16px] border-secondary-fixed opacity-30"></div>
+</div>
+<div class="flex-1 space-y-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-body-sm">Logistics</span>
+</div>
+<span class="font-bold">42%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="text-body-sm">IT Services</span>
+</div>
+<span class="font-bold">28%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+<span class="text-body-sm">Marketing</span>
+</div>
+<span class="font-bold">18%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+<span class="text-body-sm">Others</span>
+</div>
+<span class="font-bold">12%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Forecasting & Trends Area Chart -->
+<div class="col-span-12 lg:col-span-8 glass-card p-stack-md rounded-xl shadow-sm h-80">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-label-caps uppercase text-outline">Forecasting &amp; Trends</h3>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-sm bg-primary"></div>
+<span class="text-[12px] font-label-caps">Actual Spend</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-sm border-2 border-dashed border-outline"></div>
+<span class="text-[12px] font-label-caps">Forecasted</span>
+</div>
+</div>
+</div>
+<div class="relative h-48 w-full">
+<!-- Fake SVG Chart -->
+<svg class="w-full h-full preserve-3d">
+<defs>
+<lineargradient id="areaGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="5%" stop-color="#22C55E" stop-opacity="0.3"></stop>
+<stop offset="95%" stop-color="#22C55E" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,150 Q100,100 200,120 T400,60 T600,90 T800,40 L800,180 L0,180 Z" fill="url(#areaGradient)"></path>
+<path d="M0,150 Q100,100 200,120 T400,60 T600,90 T800,40" fill="none" stroke="#22C55E" stroke-width="3"></path>
+<path d="M800,40 L1000,30" fill="none" stroke="#6d7b6c" stroke-dasharray="4,4" stroke-width="2"></path>
+<!-- Tooltip indicator -->
+<circle cx="600" cy="90" fill="#22C55E" r="6" stroke="white" stroke-width="2"></circle>
+</svg>
+<!-- X-Axis Labels -->
+<div class="flex justify-between mt-4 text-[11px] font-label-caps text-outline uppercase">
+<span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span>
+</div>
+</div>
+</div>
+<!-- Vendor Performance Leaderboard -->
+<div class="col-span-12 lg:col-span-4 glass-card rounded-xl shadow-sm overflow-hidden">
+<div class="p-stack-md border-b border-outline-variant bg-surface-container/50">
+<h3 class="font-label-caps uppercase text-outline">Vendor Performance Rank</h3>
+</div>
+<div class="divide-y divide-outline-variant">
+<div class="p-4 flex items-center justify-between hover:bg-surface-container transition-colors group">
+<div class="flex items-center gap-3">
+<span class="text-title-md font-bold text-outline group-hover:text-primary transition-colors">01</span>
+<div>
+<p class="font-bold text-on-surface">Global Systems Inc.</p>
+<p class="text-[11px] text-outline">Electronics • 42 Contracts</p>
+</div>
+</div>
+<div class="text-right">
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold">4.9</span>
+</div>
+<span class="text-[11px] text-outline">SLA: 100%</span>
+</div>
+</div>
+<div class="p-4 flex items-center justify-between hover:bg-surface-container transition-colors group">
+<div class="flex items-center gap-3">
+<span class="text-title-md font-bold text-outline group-hover:text-primary transition-colors">02</span>
+<div>
+<p class="font-bold text-on-surface">Precision Logistics</p>
+<p class="text-[11px] text-outline">Shipping • 18 Contracts</p>
+</div>
+</div>
+<div class="text-right">
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold">4.7</span>
+</div>
+<span class="text-[11px] text-outline">SLA: 98.4%</span>
+</div>
+</div>
+<div class="p-4 flex items-center justify-between hover:bg-surface-container transition-colors group">
+<div class="flex items-center gap-3">
+<span class="text-title-md font-bold text-outline group-hover:text-primary transition-colors">03</span>
+<div>
+<p class="font-bold text-on-surface">Apex Office Supplies</p>
+<p class="text-[11px] text-outline">Furniture • 62 Contracts</p>
+</div>
+</div>
+<div class="text-right">
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold">4.5</span>
+</div>
+<span class="text-[11px] text-outline">SLA: 94.2%</span>
+</div>
+</div>
+</div>
+<button class="w-full py-4 text-center text-body-sm font-bold text-on-surface-variant hover:bg-surface-container-high transition-colors">
+                    View Full Rankings
+                </button>
+</div>
+<!-- Supplier Map Section -->
+<div class="col-span-12 glass-card rounded-xl shadow-sm overflow-hidden h-[400px] relative">
+<div class="absolute top-4 left-4 z-10 p-stack-md glass-card rounded-lg shadow-lg max-w-xs">
+<h3 class="font-label-caps uppercase text-outline mb-2">Global Supplier Density</h3>
+<p class="text-body-sm text-on-surface-variant mb-4">You have 432 active suppliers across 14 countries. Central Europe remains your highest risk zone due to logistics delays.</p>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<span class="text-[12px] font-bold">12 Active RFQs</span>
+</div>
+</div>
+<!-- Map Placeholder -->
+<div class="w-full h-full bg-surface-container relative">
+<img class="w-full h-full object-cover grayscale opacity-60" data-alt="A stylized, clean, minimalist architectural map of the world rendered in subtle shades of slate grey and off-white. The map uses delicate linework and features bright green neon-like dots indicating supplier locations across major global hubs in North America, Europe, and Asia. The lighting is diffused and professional, matching a high-end fintech dashboard interface." data-location="Global" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3h_ED6jo645lnZlyRpFm72SFG3tlNklIRidHOdBjCovE77ftIizQFvb0JgMwMZJoeX0xlH2k1IjV9jfLylmWGtaXkMnXFCXjfonvMHwiU31U86vAVT-Pmq0krq6BSJ4wGS41Qb9OhkZRM8-5jxeBhnObRvFji4iC04vu9yp7cRsyo1OMhRsy4XAXnUoeHQ1iNPTSzQ0BuuoH-5orqG-cPJ_zf56vxrouq0NLnGTiUiMH29aW1ohW6F1yXx5Mro8_TWHeswe84183v"/>
+<!-- Pulsing Hotspots -->
+<div class="absolute top-1/3 left-1/4 w-4 h-4 bg-primary rounded-full animate-ping opacity-75"></div>
+<div class="absolute top-1/2 left-[45%] w-4 h-4 bg-primary rounded-full animate-ping opacity-75"></div>
+<div class="absolute top-1/4 left-[70%] w-4 h-4 bg-primary rounded-full animate-ping opacity-75"></div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Interactive Micro-interactions
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+                card.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Simple script to toggle dark mode for testing (Optional but good practice)
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'd' && e.ctrlKey) {
+                document.documentElement.classList.toggle('dark');
+            }
+        });
+    </script>
+</body></html>

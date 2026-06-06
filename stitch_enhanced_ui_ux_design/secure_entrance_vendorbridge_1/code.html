@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login | VendorBridge - Enterprise Procurement</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Geist:wght@400;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        .glass-panel {
+            backdrop-filter: blur(20px);
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#005321",
+                        "surface-tint": "#006e2f",
+                        "inverse-primary": "#4ae176",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#6bff8f",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-tertiary-container": "#3d4042",
+                        "primary": "#006e2f",
+                        "primary-container": "#22c55e",
+                        "surface-container-highest": "#dae2fd",
+                        "primary-fixed-dim": "#4ae176",
+                        "surface": "#faf8ff",
+                        "on-secondary-container": "#54647a",
+                        "tertiary-container": "#a9acae",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#d2d9f4",
+                        "secondary": "#505f76",
+                        "surface-container-high": "#e2e7ff",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#eef0ff",
+                        "on-primary-container": "#004b1e",
+                        "inverse-surface": "#283044",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#131b2e",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#131b2e",
+                        "on-surface-variant": "#3d4a3d",
+                        "outline-variant": "#bccbb9",
+                        "secondary-container": "#d0e1fb",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#e0e3e5",
+                        "surface-variant": "#dae2fd",
+                        "surface-container": "#eaedff",
+                        "surface-container-low": "#f2f3ff",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "surface-bright": "#faf8ff",
+                        "on-primary-fixed": "#002109",
+                        "outline": "#6d7b6c",
+                        "tertiary": "#5c5f61",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-tertiary-fixed": "#191c1e",
+                        "background": "#faf8ff",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "on-secondary-fixed": "#0b1c30"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "stack-lg": "32px",
+                        "margin-mobile": "16px",
+                        "container-max": "1440px",
+                        "stack-sm": "8px",
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "label-caps": ["Geist"],
+                        "code": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "code": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-inverse-surface text-on-surface overflow-hidden font-body-sm selection:bg-primary/30">
+<main class="flex min-h-screen">
+<!-- Left Side: Authentication Form -->
+<section class="w-full lg:w-[480px] bg-inverse-surface flex flex-col justify-between p-margin-desktop relative z-10">
+<!-- Header Brand -->
+<div class="flex items-center gap-3">
+<img alt="VendorBridge Logo" class="w-10 h-10" src="data:image/png;base64,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"/>
+<span class="font-title-md text-title-md text-inverse-on-surface">VendorBridge</span>
+</div>
+<!-- Form Container -->
+<div class="max-w-sm mx-auto w-full py-stack-lg">
+<header class="mb-10">
+<h1 class="font-headline-lg text-headline-lg text-inverse-on-surface mb-2">Secure Entrance</h1>
+<p class="text-on-surface-variant font-body-sm">Access your enterprise procurement network</p>
+</header>
+<div class="space-y-6">
+<!-- Social Logins -->
+<div class="grid grid-cols-2 gap-stack-md">
+<button class="flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-outline-variant hover:bg-surface-container-high transition-colors text-inverse-on-surface">
+<svg class="w-5 h-5" viewbox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 12-4.53z" fill="#EA4335"></path></svg>
+<span class="text-body-sm font-medium">Google</span>
+</button>
+<button class="flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-outline-variant hover:bg-surface-container-high transition-colors text-inverse-on-surface">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.341-3.369-1.341-.454-1.152-1.11-1.459-1.11-1.459-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482C19.138 20.164 22 16.418 22 12c0-5.523-4.477-10-10-10z"></path></svg>
+<span class="text-body-sm font-medium">GitHub</span>
+</button>
+</div>
+<div class="relative flex items-center py-2">
+<div class="flex-grow border-t border-outline-variant"></div>
+<span class="flex-shrink mx-4 text-on-surface-variant font-label-caps uppercase tracking-widest text-[10px]">Or continue with</span>
+<div class="flex-grow border-t border-outline-variant"></div>
+</div>
+<!-- Input Fields -->
+<form class="space-y-4">
+<div class="space-y-2">
+<label class="font-label-caps text-on-surface-variant uppercase tracking-wider block">Business Email</label>
+<div class="relative group">
+<input class="w-full bg-surface-container-low border-outline-variant text-inverse-on-surface px-4 py-3 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all placeholder:text-outline outline-none" placeholder="name@company.com" type="email"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant opacity-50">mail</span>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<label class="font-label-caps text-on-surface-variant uppercase tracking-wider block">Password</label>
+<a class="text-primary font-label-caps uppercase tracking-wider hover:underline" href="#">Forgot?</a>
+</div>
+<div class="relative group">
+<input class="w-full bg-surface-container-low border-outline-variant text-inverse-on-surface px-4 py-3 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all placeholder:text-outline outline-none" placeholder="••••••••" type="password"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant opacity-50">lock</span>
+</div>
+</div>
+<button class="w-full bg-primary-container text-on-primary-container font-medium py-3 rounded-lg hover:brightness-110 active:scale-[0.98] transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2" type="submit">
+                            Sign In to Dashboard
+                            <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</form>
+</div>
+<footer class="mt-8 text-center">
+<p class="text-on-surface-variant text-body-sm">
+                        Don't have an account? 
+                        <a class="text-primary font-semibold hover:underline" href="#">Start enterprise trial</a>
+</p>
+</footer>
+</div>
+<!-- Footer Links -->
+<div class="flex justify-between text-[12px] text-outline font-label-caps uppercase tracking-widest">
+<span>© 2024 VendorBridge</span>
+<div class="flex gap-4">
+<a class="hover:text-primary-fixed-dim transition-colors" href="#">Privacy</a>
+<a class="hover:text-primary-fixed-dim transition-colors" href="#">Security</a>
+</div>
+</div>
+</section>
+<!-- Right Side: Abstract Illustration & Visuals -->
+<section class="hidden lg:flex flex-1 relative items-center justify-center bg-[#0d1525] overflow-hidden">
+<!-- Animated Gradient Background -->
+<div class="absolute inset-0 opacity-40">
+<div class="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-primary/20 blur-[120px] rounded-full animate-pulse"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-blue-600/10 blur-[100px] rounded-full"></div>
+</div>
+<!-- Abstract Grid Pattern -->
+<div class="absolute inset-0" style="background-image: radial-gradient(rgba(34, 197, 94, 0.15) 1px, transparent 1px); background-size: 40px 40px;"></div>
+<!-- Central Content: Procurement Analytics Visualization -->
+<div class="relative z-20 w-full max-w-2xl px-stack-lg">
+<div class="glass-panel p-8 rounded-xl shadow-2xl space-y-8 animate-float">
+<!-- Dashboard Header Simulation -->
+<div class="flex justify-between items-center border-b border-outline-variant/30 pb-6">
+<div class="space-y-1">
+<div class="h-4 w-32 bg-primary/20 rounded-full"></div>
+<div class="h-2 w-48 bg-outline-variant/20 rounded-full"></div>
+</div>
+<div class="flex gap-2">
+<div class="h-8 w-8 rounded-lg bg-surface-container-high/50"></div>
+<div class="h-8 w-8 rounded-lg bg-surface-container-high/50"></div>
+</div>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-3 gap-6">
+<div class="space-y-3">
+<span class="material-symbols-outlined text-primary text-[32px]" data-weight="fill">insights</span>
+<div class="h-2 w-full bg-outline-variant/20 rounded-full"></div>
+<div class="h-5 w-2/3 bg-inverse-on-surface/10 rounded-full"></div>
+</div>
+<div class="space-y-3">
+<span class="material-symbols-outlined text-blue-400 text-[32px]" data-weight="fill">hub</span>
+<div class="h-2 w-full bg-outline-variant/20 rounded-full"></div>
+<div class="h-5 w-1/2 bg-inverse-on-surface/10 rounded-full"></div>
+</div>
+<div class="space-y-3">
+<span class="material-symbols-outlined text-amber-400 text-[32px]" data-weight="fill">verified_user</span>
+<div class="h-2 w-full bg-outline-variant/20 rounded-full"></div>
+<div class="h-5 w-3/4 bg-inverse-on-surface/10 rounded-full"></div>
+</div>
+</div>
+<!-- Abstract Network Graph -->
+<div class="relative h-48 bg-surface-container-lowest/5 rounded-lg border border-outline-variant/20 overflow-hidden group">
+<div class="absolute inset-0 flex items-center justify-center">
+<svg class="w-full h-full opacity-60" viewbox="0 0 400 150">
+<path class="dash-animate" d="M0,75 Q50,20 100,75 T200,75 T300,75 T400,75" fill="none" stroke="#22C55E" stroke-width="2"></path>
+<path d="M0,100 Q80,150 150,80 T300,100 T400,50" fill="none" opacity="0.5" stroke="#3B82F6" stroke-width="1.5"></path>
+<circle cx="100" cy="75" fill="#22C55E" r="4"></circle>
+<circle cx="200" cy="75" fill="#22C55E" r="4"></circle>
+<circle cx="300" cy="75" fill="#22C55E" r="4"></circle>
+</svg>
+</div>
+<!-- Floating Data Points -->
+<div class="absolute top-4 left-6 px-3 py-1 bg-primary/20 rounded text-[10px] font-code text-primary uppercase tracking-tighter">Live Vendor Metrics</div>
+<div class="absolute bottom-4 right-6 px-3 py-1 bg-blue-500/20 rounded text-[10px] font-code text-blue-400 uppercase tracking-tighter">Global Chain Active</div>
+</div>
+</div>
+<!-- Floating Accents -->
+<div class="absolute -top-12 -right-12 w-32 h-32 glass-panel rounded-full flex items-center justify-center border-primary/30 animate-float" style="animation-delay: -2s">
+<span class="material-symbols-outlined text-primary text-4xl" data-weight="fill">shield_lock</span>
+</div>
+<div class="absolute -bottom-8 -left-8 w-24 h-24 glass-panel rounded-lg flex items-center justify-center border-blue-400/30 animate-float" style="animation-delay: -4s">
+<span class="material-symbols-outlined text-blue-400 text-3xl" data-weight="fill">data_exploration</span>
+</div>
+<div class="mt-12 text-center max-w-lg mx-auto">
+<h2 class="font-headline-lg text-headline-lg text-inverse-on-surface mb-4">Precision Intelligence for Global Teams</h2>
+<p class="text-on-surface-variant font-body-lg">VendorBridge optimizes your entire procurement lifecycle with machine-learning insights and automated risk management.</p>
+</div>
+</div>
+<!-- Background Image Integration -->
+<div class="absolute inset-0 pointer-events-none mix-blend-overlay opacity-20">
+<div class="w-full h-full bg-cover bg-center" data-alt="A sophisticated data visualization dashboard showing interconnected procurement nodes and global supply chain metrics. The scene is rendered in a deep slate blue and neon green palette, echoing a high-trust, technical SaaS environment with glassmorphic elements and clean, modern typography." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAYWr4oijImSx7PnqsLG9eNBlR6D2WMXummdRTDRM-ZDEXkDHgtMCKRBDg7jijYPFnDOJZDaGh9qUVfHekD2pGZJSmrJhNQrPCNCiTHd-2yXYnf1pxvM5M4ReXUV_Z3JUk_tUKavDUaFRPTW2XKsauOP3ZUQaEfpOHNLatbj0wVWtn-KyQiBRiFElNG18Jg2lz_HCSzumS7e2an4eXpAOhgZJZdq0mhEsv1U6jkzktPVk98Fi4UNtvsfaTwDOdqA0BG6NZbFDpHmeTQ')"></div>
+</div>
+</section>
+</main>
+<script>
+        // Micro-interaction for inputs
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.querySelector('.material-symbols-outlined').style.color = '#22C55E';
+                input.parentElement.querySelector('.material-symbols-outlined').style.opacity = '1';
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.querySelector('.material-symbols-outlined').style.color = '';
+                input.parentElement.querySelector('.material-symbols-outlined').style.opacity = '0.5';
+            });
+        });
+
+        // Atmospheric mouse effect for the right side
+        const rightSide = document.querySelector('.lg\\:flex');
+        rightSide.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            const x = (clientX - rightSide.offsetLeft) / rightSide.clientWidth;
+            const y = (clientY - rightSide.offsetTop) / rightSide.clientHeight;
+            
+            const gradient = rightSide.querySelector('.animate-pulse');
+            gradient.style.transform = `translate(${x * 50}px, ${y * 50}px)`;
+        });
+    </script>
+</body></html>

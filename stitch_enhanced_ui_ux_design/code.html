@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Register | VendorBridge</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Geist:wght@400;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#dae2fd",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "secondary-container": "#d0e1fb",
+                        "tertiary": "#5c5f61",
+                        "surface-tint": "#006e2f",
+                        "outline-variant": "#bccbb9",
+                        "surface-container-low": "#f2f3ff",
+                        "primary-container": "#22c55e",
+                        "on-surface": "#131b2e",
+                        "tertiary-container": "#a9acae",
+                        "surface-container-high": "#e2e7ff",
+                        "surface-container-highest": "#dae2fd",
+                        "outline": "#6d7b6c",
+                        "on-secondary-fixed": "#0b1c30",
+                        "primary-fixed": "#6bff8f",
+                        "inverse-surface": "#283044",
+                        "surface-dim": "#d2d9f4",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "on-secondary-container": "#54647a",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "inverse-primary": "#4ae176",
+                        "background": "#faf8ff",
+                        "surface-bright": "#faf8ff",
+                        "on-surface-variant": "#3d4a3d",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-container": "#3d4042",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#131b2e",
+                        "on-tertiary-fixed": "#191c1e",
+                        "tertiary-fixed": "#e0e3e5",
+                        "on-primary-fixed-variant": "#005321",
+                        "inverse-on-surface": "#eef0ff",
+                        "surface": "#faf8ff",
+                        "primary": "#006e2f",
+                        "secondary": "#505f76",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "surface-container": "#eaedff",
+                        "primary-fixed-dim": "#4ae176",
+                        "on-primary-container": "#004b1e",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#002109",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1440px",
+                        "stack-lg": "32px",
+                        "stack-sm": "8px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px",
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "code": ["Geist"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-caps": ["Geist"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "code": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(40, 48, 68, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        body {
+            background-color: #0f172a; /* Equivalent to deep inverse-surface for base */
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center font-body-sm text-body-sm antialiased overflow-hidden">
+<!-- Split Screen Container -->
+<div class="flex w-full min-h-screen">
+<!-- Left Side: Branding/Illustration (Visible on md+) -->
+<div class="hidden md:flex flex-1 relative flex-col justify-between p-margin-desktop bg-inverse-surface overflow-hidden">
+<!-- Decorative Background Pattern -->
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<div class="absolute inset-0" style="background-image: radial-gradient(#22c55e 1px, transparent 1px); background-size: 32px 32px;"></div>
+</div>
+<div class="relative z-10 flex items-center gap-stack-sm">
+<div class="bg-primary p-2 rounded-lg shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">storefront</span>
+</div>
+<span class="font-title-md text-title-md font-bold text-inverse-on-surface">VendorBridge</span>
+</div>
+<div class="relative z-10 space-y-stack-md max-w-lg">
+<h1 class="font-display-lg text-display-lg text-inverse-on-surface leading-tight">
+                    Scale your procurement <span class="text-primary-fixed">with precision.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-surface-variant/80">
+                    The enterprise ecosystem for vendor management, streamlined RFQs, and automated purchase orders in one secure vault.
+                </p>
+</div>
+<div class="relative z-10 grid grid-cols-2 gap-gutter">
+<div class="p-stack-md glass-card rounded-xl">
+<div class="text-primary-fixed font-bold text-title-md">99.9%</div>
+<div class="text-surface-variant font-label-caps uppercase tracking-wider">Uptime SLA</div>
+</div>
+<div class="p-stack-md glass-card rounded-xl">
+<div class="text-primary-fixed font-bold text-title-md">256-bit</div>
+<div class="text-surface-variant font-label-caps uppercase tracking-wider">AES Encryption</div>
+</div>
+</div>
+<!-- Main Illustration Image -->
+<div class="absolute -bottom-20 -right-20 w-[600px] h-[600px] opacity-20">
+<img alt="Abstract Technical Grid" class="w-full h-full object-cover rounded-full" data-alt="A highly complex and glowing abstract representation of a global supply chain network, featuring interconnected nodes and digital data streams flowing through a dark, obsidian-colored environment. The scene is lit by electric green neon pulses that highlight paths and connections, creating a sense of sophisticated machinery and enterprise-grade technology. The mood is high-tech, futuristic, and secure, perfectly matching the VendorBridge dark mode aesthetic with deep slate backgrounds and vibrant green accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdGHbzf0wIKW0Edxx9TZBPEkPowfk9DNWiadGgPz4GadEDbr4716coxmLW8tzewKV8ttIygDK5kDnlhDhgOuqRuh32zaDQ5Wfkp3aUsYa9mmqj36JjlbHptB1t-N9JXPEOzz3Hz5w_QMMX8VrQj0t_B0J_nr_NELY7stEkJcccWG5PNCD8qBDDXUgNg2glHAMgJpFLBMQykuEf3ZgHHLZGVo1jZk03NiJL3387nRkjLgJ1WdUDGcD5Av858-fCdZFa-PehvIqfRqsg"/>
+</div>
+</div>
+<!-- Right Side: Registration Form -->
+<div class="flex-1 flex flex-col items-center justify-center p-margin-mobile md:p-margin-desktop bg-[#0f172a]">
+<div class="w-full max-w-md space-y-stack-lg">
+<!-- Mobile Logo -->
+<div class="md:hidden flex items-center gap-stack-sm mb-stack-lg">
+<span class="material-symbols-outlined text-primary text-3xl">storefront</span>
+<span class="font-title-md text-title-md font-bold text-white">VendorBridge</span>
+</div>
+<div class="space-y-stack-sm">
+<h2 class="font-headline-lg text-headline-lg text-white">Create Account</h2>
+<p class="font-body-sm text-body-sm text-secondary-fixed-dim">Join thousands of enterprises optimizing their vendor relationships today.</p>
+</div>
+<form class="space-y-stack-md" onsubmit="return false;">
+<!-- Full Name -->
+<div class="space-y-1">
+<label class="font-label-caps text-label-caps text-surface-variant/70 block px-1" for="full-name">Full Name</label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-secondary-fixed-dim group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">person</span>
+</div>
+<input class="w-full bg-inverse-surface border-outline-variant/20 text-white rounded-xl py-3.5 pl-11 pr-4 focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder:text-surface-variant/30 outline-none" id="full-name" name="full-name" placeholder="Johnathan Doe" type="text"/>
+</div>
+</div>
+<!-- Business Email -->
+<div class="space-y-1">
+<label class="font-label-caps text-label-caps text-surface-variant/70 block px-1" for="email">Business Email</label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-secondary-fixed-dim group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</div>
+<input class="w-full bg-inverse-surface border-outline-variant/20 text-white rounded-xl py-3.5 pl-11 pr-4 focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder:text-surface-variant/30 outline-none" id="email" name="email" placeholder="john@company.com" type="email"/>
+</div>
+</div>
+<!-- Password -->
+<div class="space-y-1">
+<label class="font-label-caps text-label-caps text-surface-variant/70 block px-1" for="password">Password</label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-secondary-fixed-dim group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</div>
+<input class="w-full bg-inverse-surface border-outline-variant/20 text-white rounded-xl py-3.5 pl-11 pr-12 focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder:text-surface-variant/30 outline-none" id="password" name="password" placeholder="••••••••" type="password"/>
+<button class="absolute inset-y-0 right-0 pr-4 flex items-center text-secondary-fixed-dim hover:text-white transition-colors" onclick="togglePasswordVisibility()" type="button">
+<span class="material-symbols-outlined text-[20px]" id="visibility-icon">visibility</span>
+</button>
+</div>
+</div>
+<!-- Terms checkbox -->
+<div class="flex items-start gap-3 py-2">
+<input class="mt-1 w-4 h-4 rounded border-outline-variant/20 bg-inverse-surface text-primary focus:ring-primary focus:ring-offset-0" id="terms" type="checkbox"/>
+<label class="font-body-sm text-body-sm text-secondary-fixed-dim select-none" for="terms">
+                            I agree to the <a class="text-primary hover:underline transition-all" href="#">Terms of Service</a> and <a class="text-primary hover:underline transition-all" href="#">Privacy Policy</a>.
+                        </label>
+</div>
+<!-- CTA Button -->
+<button class="w-full group relative flex items-center justify-center gap-2 bg-primary-container hover:bg-[#16a34a] active:scale-[0.98] text-on-primary-container font-bold py-4 rounded-xl transition-all shadow-lg shadow-primary/20 mt-stack-md" type="submit">
+<span>Sign Up</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</form>
+<!-- Divider -->
+<div class="relative flex items-center py-4">
+<div class="flex-grow border-t border-outline-variant/10"></div>
+<span class="flex-shrink mx-4 font-label-caps text-label-caps text-surface-variant/30">Or join with</span>
+<div class="flex-grow border-t border-outline-variant/10"></div>
+</div>
+<!-- Social/SSO Options -->
+<div class="grid grid-cols-2 gap-stack-md">
+<button class="flex items-center justify-center gap-2 py-3 px-4 glass-card rounded-xl hover:bg-white/10 transition-colors text-white">
+<img alt="Google Logo" class="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB__5uX4rw5AGqGpHBPzAGW2nbfbPM46qeHEMq9GOzre0iOmOdTYuwVjC79u9oruIhs50Y1f1WZePzAEUN6pcc8_07HSaERdl0jceRVgVSQeyBTp9Y2VEqALr5t_miE2trUGsmRIm1_KlouLQIN2xO0SbG28p-enx-G1g10OH1LbafOjcpku44vmyMnsHo20O0I0RmSfkLdxaorhvnhgAjJQvgbpC2ZAEemE7ofuFCcIT08hG_PgaWqax1RfG818AYSLLqKEJP6Ub8r"/>
+<span>Google</span>
+</button>
+<button class="flex items-center justify-center gap-2 py-3 px-4 glass-card rounded-xl hover:bg-white/10 transition-colors text-white">
+<img alt="LinkedIn Logo" class="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtN01kRMVCd3nf9FDgPvk0WiKT5zC1YeI4O4JsBpD0cOb_cXIt9YrOQFd2uhgkXaFqoVCUydZ0uMZzJGCBNYrwhEDgfwHX0-GHCx5Hq5dpmCGja1LO2yFyoCPyAXfyLdWxyaoH8O1bIjepXQoeXaI1d-zW9poGEesFcf88nXDhdv_vw2D4-C0gHad6h2XeerQsTv_v0utbr68CpYwBOjT7bVbf0p5jpB9MuOvg-9cPj0kBmNduoJEwykBQD2wtlhCXZ768mmYkUvAh"/>
+<span>LinkedIn</span>
+</button>
+</div>
+<div class="text-center pt-stack-md">
+<p class="font-body-sm text-body-sm text-secondary-fixed-dim">
+                        Already have an account? 
+                        <a class="text-primary-fixed font-semibold hover:underline decoration-2 underline-offset-4 ml-1" href="#">Log In</a>
+</p>
+</div>
+</div>
+<!-- Footer micro-copy -->
+<div class="absolute bottom-8 text-center">
+<p class="font-label-caps text-[10px] text-surface-variant/20 tracking-[0.2em] uppercase">
+                    © 2024 VendorBridge Inc. Secure Infrastructure.
+                </p>
+</div>
+</div>
+</div>
+<script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const visibilityIcon = document.getElementById('visibility-icon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                visibilityIcon.textContent = 'visibility_off';
+            } else {
+                passwordInput.type = 'password';
+                visibilityIcon.textContent = 'visibility';
+            }
+        }
+
+        // Simple atmospheric interaction
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.005;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.005;
+            const cards = document.querySelectorAll('.glass-card');
+            cards.forEach(card => {
+                card.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            });
+        });
+    </script>
+</body></html>

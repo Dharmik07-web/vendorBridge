@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Geist:wght@400;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #bccbb9;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#005321",
+                        "surface-tint": "#006e2f",
+                        "inverse-primary": "#4ae176",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#6bff8f",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-tertiary-container": "#3d4042",
+                        "primary": "#006e2f",
+                        "primary-container": "#22c55e",
+                        "surface-container-highest": "#dae2fd",
+                        "primary-fixed-dim": "#4ae176",
+                        "surface": "#faf8ff",
+                        "on-secondary-container": "#54647a",
+                        "tertiary-container": "#a9acae",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#d2d9f4",
+                        "secondary": "#505f76",
+                        "surface-container-high": "#e2e7ff",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#eef0ff",
+                        "on-primary-container": "#004b1e",
+                        "inverse-surface": "#283044",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#131b2e",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#131b2e",
+                        "on-surface-variant": "#3d4a3d",
+                        "outline-variant": "#bccbb9",
+                        "secondary-container": "#d0e1fb",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#e0e3e5",
+                        "surface-variant": "#dae2fd",
+                        "surface-container": "#eaedff",
+                        "surface-container-low": "#f2f3ff",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "on-tertiary-fixed-variant": "#444749",
+                        "surface-bright": "#faf8ff",
+                        "on-primary-fixed": "#002109",
+                        "outline": "#6d7b6c",
+                        "tertiary": "#5c5f61",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-tertiary-fixed": "#191c1e",
+                        "background": "#faf8ff",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "on-secondary-fixed": "#0b1c30"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "40px",
+                        "stack-lg": "32px",
+                        "margin-mobile": "16px",
+                        "container-max": "1440px",
+                        "stack-sm": "8px",
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "label-caps": ["Geist"],
+                        "code": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "code": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-sm min-h-screen selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface dark:bg-inverse-surface border-r border-outline-variant dark:border-outline shadow-sm flex flex-col p-stack-md z-50">
+<div class="flex items-center gap-3 mb-stack-lg px-3">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary" data-icon="business">business</span>
+</div>
+<div>
+<h1 class="font-title-md text-title-md font-bold text-on-surface dark:text-inverse-on-surface">VendorBridge</h1>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant/70 font-label-caps">Enterprise Procurement</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1 custom-scrollbar overflow-y-auto">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="storefront">storefront</span>
+<span>Vendors</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="request_quote">request_quote</span>
+<span>RFQs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span>Quotations</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="fact_check">fact_check</span>
+<span>Approvals</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span>Purchase Orders</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span>Invoices</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span>Reports &amp; Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-lg border-l-4 border-primary shadow-sm font-semibold active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span>Activity Logs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-4">
+<button class="w-full flex items-center justify-center gap-2 py-3 px-4 bg-primary text-on-primary rounded-xl font-semibold shadow-lg hover:brightness-110 active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+<span>New RFQ</span>
+</button>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-64 h-16 bg-surface/80 dark:bg-inverse-surface/80 backdrop-blur-xl border-b border-outline-variant dark:border-outline z-40 flex justify-between items-center px-margin-desktop shadow-sm">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-full focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all font-body-sm group-hover:border-outline" placeholder="Search audit logs..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-on-surface-variant hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="business">business</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-secondary-container flex items-center justify-center border border-outline-variant overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Professional corporate headshot of a male executive wearing a dark navy blazer and white shirt, set against a clean, softly lit office background. The lighting is bright and modern, emphasizing clarity and professionalism. High-end business portrait style with a shallow depth of field, reflecting a trustworthy enterprise environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkDobzx6XKO5f9Hx5zy1BQLDsijPup4W_VivtpJ6_w57DO9VJMOtz1A8meZaxeF652MR37fhHogM8Pvrz4ab-xg77SyJvJwUSvh5AtRwyoBQMQn7Jjra3NttqHEAcTycJ1Vv68gZXYl1Ii2ZmVmglcOMDGgQk2Iq-ULbLK3UwooUVHxfhZouw2roCSUVXHTXidYEmTsEuOpbSS9h1anP9EVSVmFlfkg0uqa8YfpYHy58LAdtzd2A6SiqBxqaKGhBLqyUMeXgkbMSvX"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-64 mt-16 p-margin-desktop bg-background min-h-[calc(100vh-64px)]">
+<div class="max-w-container-max mx-auto space-y-stack-lg">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Audit Center</h2>
+<p class="text-on-surface-variant font-body-lg">Immutable event trail for compliance and security monitoring.</p>
+</div>
+<div class="flex gap-stack-sm">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface border border-outline-variant rounded-lg text-on-surface hover:bg-surface-container-high transition-all shadow-sm font-semibold">
+<span class="material-symbols-outlined text-[18px]" data-icon="filter_list">filter_list</span>
+<span>View Options</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-lg hover:brightness-110 transition-all shadow-lg font-semibold" onclick="simulateExport()">
+<span class="material-symbols-outlined text-[18px]" data-icon="download">download</span>
+<span>Export Audit CSV</span>
+</button>
+</div>
+</div>
+<!-- Bento Stats -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="bg-surface p-stack-md rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<span class="font-label-caps text-on-surface-variant uppercase tracking-wider">Total Events (24h)</span>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="text-3xl font-bold">12,482</span>
+<span class="text-primary text-xs font-semibold flex items-center">+8.2% <span class="material-symbols-outlined text-xs" data-icon="trending_up">trending_up</span></span>
+</div>
+</div>
+<div class="bg-surface p-stack-md rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<span class="font-label-caps text-on-surface-variant uppercase tracking-wider">Security Alerts</span>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="text-3xl font-bold text-error">3</span>
+<span class="text-on-surface-variant text-xs">Unresolved</span>
+</div>
+</div>
+<div class="bg-surface p-stack-md rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<span class="font-label-caps text-on-surface-variant uppercase tracking-wider">Active Users</span>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="text-3xl font-bold">42</span>
+<span class="text-on-surface-variant text-xs">Currently Sessioned</span>
+</div>
+</div>
+<div class="bg-surface p-stack-md rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+<span class="font-label-caps text-on-surface-variant uppercase tracking-wider">System Health</span>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="text-3xl font-bold text-primary">99.9%</span>
+<span class="text-on-surface-variant text-xs">Normal Op</span>
+</div>
+</div>
+</div>
+<!-- Timeline Filter Bar -->
+<div class="bg-surface/50 backdrop-blur-md sticky top-16 z-30 p-4 border border-outline-variant rounded-xl flex flex-wrap items-center gap-4 shadow-sm">
+<div class="flex items-center gap-2 px-3 py-1.5 bg-surface-container-low border border-outline-variant rounded-lg">
+<span class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="person">person</span>
+<select class="bg-transparent border-none focus:ring-0 text-sm py-0 pl-0 pr-6">
+<option>All Users</option>
+<option>Sarah Chen</option>
+<option>Michael Scott</option>
+<option>Alex Rivera</option>
+</select>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 bg-surface-container-low border border-outline-variant rounded-lg">
+<span class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="category">category</span>
+<select class="bg-transparent border-none focus:ring-0 text-sm py-0 pl-0 pr-6">
+<option>All Action Types</option>
+<option>Procurement</option>
+<option>Approval</option>
+<option>Security</option>
+<option>System</option>
+</select>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 bg-surface-container-low border border-outline-variant rounded-lg">
+<span class="material-symbols-outlined text-sm text-on-surface-variant" data-icon="calendar_today">calendar_today</span>
+<span class="text-sm font-medium">Last 7 Days</span>
+<span class="material-symbols-outlined text-sm" data-icon="expand_more">expand_more</span>
+</div>
+<div class="ml-auto text-on-surface-variant text-xs font-label-caps">
+                    Showing 1,240 events
+                </div>
+</div>
+<!-- Linear-Inspired Timeline -->
+<div class="relative space-y-4">
+<!-- Timeline Vertical Line -->
+<div class="absolute left-10 top-0 bottom-0 w-[2px] bg-outline-variant/30 -z-10"></div>
+<!-- Event Group: Today -->
+<div class="space-y-4">
+<div class="flex items-center gap-4 mb-2">
+<div class="w-20 text-right font-label-caps text-on-surface-variant uppercase text-[10px] tracking-widest">Today</div>
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+</div>
+<!-- Event Card 1 -->
+<div class="group flex items-start gap-4">
+<div class="w-20 text-right pt-2 text-xs text-on-surface-variant tabular-nums">09:42 AM</div>
+<div class="relative">
+<div class="w-6 h-6 rounded-full bg-primary-container/20 flex items-center justify-center border border-primary/20 z-10 relative bg-surface">
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="fact_check">fact_check</span>
+</div>
+</div>
+<div class="flex-1 bg-surface border border-outline-variant p-stack-md rounded-xl shadow-sm group-hover:shadow-md group-hover:border-primary/30 transition-all flex items-center justify-between">
+<div class="flex items-center gap-stack-md">
+<img alt="Sarah Chen" class="w-10 h-10 rounded-full border border-outline-variant" data-alt="Modern high-resolution portrait of a young female professional in a minimalist creative setting. She has a warm, confident expression, framed by soft ambient natural light. The background is a clean, neutral-toned architecture with green plants, emphasizing a sustainable and forward-thinking corporate atmosphere. Sharp focus and cinematic lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKLLvsOEJu_yjx3sQ3vLvIQ-dUvQVvQ6kY47iArxgB27ckJUUmY1OR4w0kJrKxBNSnltd6QM2fgb3ZkaRchU62gq2Aiy6QKQiLJRGm1i_U6StjyY3wZpkykQfYbNZXCmaSBcbrA_hJfBCdkzTbryitCDlDrV2C99hDN73BpdmhAyt3LG1oNShUySqj6-UGpYIJ8r0Sbj7iEnDv9Rt-IseY_7WZbJRcbGVm1lAjWgI3qee7ogWHfgNnIHXgCWHUcKTTxDKhsyqG-8Jd"/>
+<div>
+<p class="font-semibold text-on-surface"><span class="hover:underline cursor-pointer">Sarah Chen</span> approved RFQ-2024-089</p>
+<p class="text-xs text-on-surface-variant mt-1">Status changed from 'Pending Review' to 'Approved'. Value: $128,400.00</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="px-2 py-1 bg-secondary-container/30 text-secondary text-[10px] font-bold uppercase rounded tracking-tighter">Approval</span>
+<button class="p-1 hover:bg-surface-container-high rounded transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-[18px]" data-icon="more_horiz">more_horiz</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Event Card 2 (Security) -->
+<div class="group flex items-start gap-4">
+<div class="w-20 text-right pt-2 text-xs text-on-surface-variant tabular-nums">08:15 AM</div>
+<div class="relative">
+<div class="w-6 h-6 rounded-full bg-error-container/20 flex items-center justify-center border border-error/20 z-10 relative bg-surface">
+<span class="material-symbols-outlined text-[14px] text-error" data-icon="lock_reset" data-weight="fill" style="font-variation-settings: 'FILL' 1;">lock_reset</span>
+</div>
+</div>
+<div class="flex-1 bg-surface border-l-4 border-l-error border-y border-r border-outline-variant p-stack-md rounded-xl shadow-sm group-hover:shadow-md transition-all flex items-center justify-between">
+<div class="flex items-center gap-stack-md">
+<div class="w-10 h-10 rounded-full bg-error-container flex items-center justify-center border border-error/10">
+<span class="material-symbols-outlined text-error" data-icon="shield">shield</span>
+</div>
+<div>
+<p class="font-semibold text-on-surface">Suspicious login attempt blocked</p>
+<p class="text-xs text-on-surface-variant mt-1">Source IP: 192.168.1.104 (Singapore). Account: <span class="text-error font-code">admin_service</span></p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="px-2 py-1 bg-error-container/30 text-error text-[10px] font-bold uppercase rounded tracking-tighter">Security</span>
+<button class="p-1 hover:bg-surface-container-high rounded transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-[18px]" data-icon="more_horiz">more_horiz</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Event Card 3 (Procurement) -->
+<div class="group flex items-start gap-4">
+<div class="w-20 text-right pt-2 text-xs text-on-surface-variant tabular-nums">Yesterday</div>
+<div class="relative">
+<div class="w-6 h-6 rounded-full bg-primary-container/20 flex items-center justify-center border border-primary/20 z-10 relative bg-surface">
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="shopping_bag">shopping_bag</span>
+</div>
+</div>
+<div class="flex-1 bg-surface border border-outline-variant p-stack-md rounded-xl shadow-sm group-hover:shadow-md transition-all flex items-center justify-between">
+<div class="flex items-center gap-stack-md">
+<img alt="Alex Rivera" class="w-10 h-10 rounded-full border border-outline-variant" data-alt="A detailed portrait of a mature male executive with silvering hair, wearing designer glasses and a sharp grey suit. The lighting is low-key and dramatic, creating a sense of authority and wisdom. Set in a contemporary architectural space with dark wood and glass elements. Professional, high-contrast style that feels established and premium." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCO_BGCd0tT3O9bNAdlLQRr1HwKJC86KrEY6Bfy3WqhGO2djJdw9BOseSwDOfUF7QmpwFxHzmnnujOTOIO6TOWyeI2EBedAGkJeRceNjWRX_nSgXv1u7K3a6a7yCTAJZ_dB-YngqqQjLoZr-hkS_T9B8bgTbDrEX-Ywd_YJ1EkM3tTWe_RtH1NYbP4aq18HmlTxSLfD7iyfXJsh54k_AiXMclZImX5WFuh8Tu7vriaJNZTL-cck6baO1zQX-dzG4eQSX8z7sRVoFUal"/>
+<div>
+<p class="font-semibold text-on-surface"><span class="hover:underline cursor-pointer">Alex Rivera</span> created PO-8821</p>
+<p class="text-xs text-on-surface-variant mt-1">Vendor: Global Logistics Co. Items: 12 Line Items. Total: $45,210.33</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="px-2 py-1 bg-secondary-container/30 text-secondary text-[10px] font-bold uppercase rounded tracking-tighter">Procurement</span>
+<button class="p-1 hover:bg-surface-container-high rounded transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-[18px]" data-icon="more_horiz">more_horiz</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Load More / Pagination -->
+<div class="flex justify-center py-8">
+<button class="px-6 py-2 border border-outline-variant text-on-surface-variant font-semibold rounded-full hover:bg-surface-container transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="sync">sync</span>
+                        Load More Activity
+                    </button>
+</div>
+</div>
+<!-- Footer Compliance Info -->
+<footer class="pt-12 pb-8 border-t border-outline-variant mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-on-surface-variant/60 font-label-caps uppercase tracking-widest">
+<p>© 2024 VendorBridge Security Platform. All logs are cryptographically hashed and immutable.</p>
+<div class="flex gap-6">
+<a class="hover:text-primary transition-colors" href="#">Compliance Status</a>
+<a class="hover:text-primary transition-colors" href="#">Retention Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Help Center</a>
+</div>
+</div>
+</footer>
+</div>
+</main>
+<!-- FAB (Suppressed on Details, but kept here for Dashboard feel if needed) -->
+<!-- Determined not to show FAB here per instructions for specialized sub-pages -->
+<script>
+        function simulateExport() {
+            const btn = event.currentTarget;
+            const originalText = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[18px]" data-icon="progress_activity">progress_activity</span> <span>Generating...</span>`;
+            
+            setTimeout(() => {
+                btn.innerHTML = `<span class="material-symbols-outlined text-[18px]" data-icon="check_circle">check_circle</span> <span>Downloaded</span>`;
+                btn.classList.replace('bg-primary', 'bg-on-primary-fixed-variant');
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.replace('bg-on-primary-fixed-variant', 'bg-primary');
+                    btn.disabled = false;
+                }, 2000);
+            }, 1500);
+        }
+
+        // Search highlight interaction
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('input', (e) => {
+            const val = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.group.flex');
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                if (text.includes(val)) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'scale(1)';
+                } else {
+                    card.style.opacity = '0.3';
+                    card.style.transform = 'scale(0.98)';
+                }
+            });
+        });
+    </script>
+</body></html>
