@@ -10,7 +10,9 @@ const connectDB = async () => {
     console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
     console.error(`❌ MongoDB connection error: ${error.message}`);
-    process.exit(1);
+    console.warn('Continuing without MongoDB connection (development fallback).');
+    // Do not exit the process here to allow local development without DB.
+    return;
   }
 };
 
