@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # VendorBridge — Procurement & Vendor Management ERP
 
 > Node.js · Express · MongoDB Atlas · JWT · bcrypt · Nodemailer · PDFKit
@@ -170,3 +171,6 @@ To be built in subsequent phases:
 - **Module 9** — Email Invoice (Nodemailer, PDF attachment)
 - **Module 10** — Notifications (in-app + email alerts)
 - **Module 11** — Dashboard Analytics (spending summaries, trends, vendor metrics)
+=======
+# vendorBridge
+>>>>>>> b395d48dd8484ecd95aaad38f3928c51e55e123d
