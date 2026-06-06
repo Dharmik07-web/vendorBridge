@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "name": "vendorbridge",
   "version": "1.0.0",
   "description": "Procurement & Vendor Management ERP - VendorBridge",
@@ -22,9 +21,9 @@
     "mongoose": "^8.0.3",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
-    "nodemailer": "^6.9.7",
+    "nodemailer": "^8.0.10",
     "pdfkit": "^0.14.0",
-    "uuid": "^9.0.1"
+    "uuid": "^14.0.0"
   },
   "devDependencies": {
     "jest": "^29.7.0",
@@ -34,17 +33,4 @@
   "engines": {
     "node": ">=18.0.0"
   }
-=======
-  "name": "backend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs"
->>>>>>> b395d48dd8484ecd95aaad38f3928c51e55e123d
 }
